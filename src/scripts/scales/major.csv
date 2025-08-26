@@ -1,0 +1,13 @@
+name,root,type,notes
+C Major Scale,C,Major,60;62;64;65;67;69;71;72
+C# Major Scale,C#,Major,61;63;65;66;68;70;72;73
+D Major Scale,D,Major,62;64;66;67;69;71;73;74
+D# Major Scale,D#,Major,63;65;67;68;70;72;74;75
+E Major Scale,E,Major,64;66;68;69;71;73;75;76
+F Major Scale,F,Major,65;67;69;70;72;74;76;77
+F# Major Scale,F#,Major,66;68;70;71;73;75;77;78
+G Major Scale,G,Major,67;69;71;72;74;76;78;79
+G# Major Scale,G#,Major,68;70;72;73;75;77;79;80
+A Major Scale,A,Major,69;71;73;74;76;78;80;81
+A# Major Scale,A#,Major,70;72;74;75;77;79;81;82
+B Major Scale,B,Major,71;73;75;76;78;80;82;83 

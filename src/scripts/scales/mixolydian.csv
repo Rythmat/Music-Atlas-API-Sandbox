@@ -1,0 +1,13 @@
+name,root,type,notes
+C Mixolydian Scale,C,Mixolydian,60;62;64;65;67;69;70;72
+C# Mixolydian Scale,C#,Mixolydian,61;63;65;66;68;70;71;73
+D Mixolydian Scale,D,Mixolydian,62;64;66;67;69;71;72;74
+D# Mixolydian Scale,D#,Mixolydian,63;65;67;68;70;72;73;75
+E Mixolydian Scale,E,Mixolydian,64;66;68;69;71;73;74;76
+F Mixolydian Scale,F,Mixolydian,65;67;69;70;72;74;75;77
+F# Mixolydian Scale,F#,Mixolydian,66;68;70;71;73;75;76;78
+G Mixolydian Scale,G,Mixolydian,67;69;71;72;74;76;77;79
+G# Mixolydian Scale,G#,Mixolydian,68;70;72;73;75;77;78;80
+A Mixolydian Scale,A,Mixolydian,69;71;73;74;76;78;79;81
+A# Mixolydian Scale,A#,Mixolydian,70;72;74;75;77;79;80;82
+B Mixolydian Scale,B,Mixolydian,71;73;75;76;78;80;81;83 

@@ -1,0 +1,13 @@
+name,root,type,notes
+C Phrygian Scale,C,Phrygian,60;61;63;65;67;68;70;72
+C# Phrygian Scale,C#,Phrygian,61;62;64;66;68;69;71;73
+D Phrygian Scale,D,Phrygian,62;63;65;67;69;70;72;74
+D# Phrygian Scale,D#,Phrygian,63;64;66;68;70;71;73;75
+E Phrygian Scale,E,Phrygian,64;65;67;69;71;72;74;76
+F Phrygian Scale,F,Phrygian,65;66;68;70;72;73;75;77
+F# Phrygian Scale,F#,Phrygian,66;67;69;71;73;74;76;78
+G Phrygian Scale,G,Phrygian,67;68;70;72;74;75;77;79
+G# Phrygian Scale,G#,Phrygian,68;69;71;73;75;76;78;80
+A Phrygian Scale,A,Phrygian,69;70;72;74;76;77;79;81
+A# Phrygian Scale,A#,Phrygian,70;71;73;75;77;78;80;82
+B Phrygian Scale,B,Phrygian,71;72;74;76;78;79;81;83 

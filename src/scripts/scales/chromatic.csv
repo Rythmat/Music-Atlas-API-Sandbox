@@ -1,0 +1,13 @@
+name,root,type,notes
+C Chromatic Scale,C,Chromatic,60;61;62;63;64;65;66;67;68;69;70;71;72
+C# Chromatic Scale,C#,Chromatic,61;62;63;64;65;66;67;68;69;70;71;72;73
+D Chromatic Scale,D,Chromatic,62;63;64;65;66;67;68;69;70;71;72;73;74
+D# Chromatic Scale,D#,Chromatic,63;64;65;66;67;68;69;70;71;72;73;74;75
+E Chromatic Scale,E,Chromatic,64;65;66;67;68;69;70;71;72;73;74;75;76
+F Chromatic Scale,F,Chromatic,65;66;67;68;69;70;71;72;73;74;75;76;77
+F# Chromatic Scale,F#,Chromatic,66;67;68;69;70;71;72;73;74;75;76;77;78
+G Chromatic Scale,G,Chromatic,67;68;69;70;71;72;73;74;75;76;77;78;79
+G# Chromatic Scale,G#,Chromatic,68;69;70;71;72;73;74;75;76;77;78;79;80
+A Chromatic Scale,A,Chromatic,69;70;71;72;73;74;75;76;77;78;79;80;81
+A# Chromatic Scale,A#,Chromatic,70;71;72;73;74;75;76;77;78;79;80;81;82
+B Chromatic Scale,B,Chromatic,71;72;73;74;75;76;77;78;79;80;81;82;83 

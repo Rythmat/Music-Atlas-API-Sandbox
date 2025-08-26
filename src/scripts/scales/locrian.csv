@@ -1,0 +1,13 @@
+name,root,type,notes
+C Locrian Scale,C,Locrian,60;61;63;65;66;68;70;72
+C# Locrian Scale,C#,Locrian,61;62;64;66;67;69;71;73
+D Locrian Scale,D,Locrian,62;63;65;67;68;70;72;74
+D# Locrian Scale,D#,Locrian,63;64;66;68;69;71;73;75
+E Locrian Scale,E,Locrian,64;65;67;69;70;72;74;76
+F Locrian Scale,F,Locrian,65;66;68;70;71;73;75;77
+F# Locrian Scale,F#,Locrian,66;67;69;71;72;74;76;78
+G Locrian Scale,G,Locrian,67;68;70;72;73;75;77;79
+G# Locrian Scale,G#,Locrian,68;69;71;73;74;76;78;80
+A Locrian Scale,A,Locrian,69;70;72;74;75;77;79;81
+A# Locrian Scale,A#,Locrian,70;71;73;75;76;78;80;82
+B Locrian Scale,B,Locrian,71;72;74;76;77;79;81;83 

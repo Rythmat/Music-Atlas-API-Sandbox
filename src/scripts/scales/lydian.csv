@@ -1,0 +1,13 @@
+name,root,type,notes
+C Lydian Scale,C,Lydian,60;62;64;66;67;69;71;72
+C# Lydian Scale,C#,Lydian,61;63;65;67;68;70;72;73
+D Lydian Scale,D,Lydian,62;64;66;68;69;71;73;74
+D# Lydian Scale,D#,Lydian,63;65;67;69;70;72;74;75
+E Lydian Scale,E,Lydian,64;66;68;70;71;73;75;76
+F Lydian Scale,F,Lydian,65;67;69;71;72;74;76;77
+F# Lydian Scale,F#,Lydian,66;68;70;72;73;75;77;78
+G Lydian Scale,G,Lydian,67;69;71;73;74;76;78;79
+G# Lydian Scale,G#,Lydian,68;70;72;74;75;77;79;80
+A Lydian Scale,A,Lydian,69;71;73;75;76;78;80;81
+A# Lydian Scale,A#,Lydian,70;72;74;76;77;79;81;82
+B Lydian Scale,B,Lydian,71;73;75;77;78;80;82;83 

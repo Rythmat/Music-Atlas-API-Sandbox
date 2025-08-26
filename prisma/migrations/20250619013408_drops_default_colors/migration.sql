@@ -1,0 +1,11 @@
+-- AlterTable
+ALTER TABLE "chapter" ALTER COLUMN "color" DROP NOT NULL,
+ALTER COLUMN "color" DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE "collection" ALTER COLUMN "color" DROP NOT NULL,
+ALTER COLUMN "color" DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE "page" ALTER COLUMN "color" DROP NOT NULL,
+ALTER COLUMN "color" DROP DEFAULT;

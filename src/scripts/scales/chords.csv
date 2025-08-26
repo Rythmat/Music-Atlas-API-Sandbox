@@ -1,0 +1,97 @@
+name,root,type,notes
+C Major,C,Major Triad,60;64;67
+C Major 1st Inv,C,Major Triad 1st Inv,64;67;72
+C Major 2nd Inv,C,Major Triad 2nd Inv,67;72;76
+C Minor,C,Minor Triad,60;63;67
+C Minor 1st Inv,C,Minor Triad 1st Inv,63;67;72
+C Minor 2nd Inv,C,Minor Triad 2nd Inv,67;72;75
+C Diminished,C,Diminished Triad,60;63;66
+C Diminished 1st Inv,C,Diminished Triad 1st Inv,63;66;72
+C Diminished 2nd Inv,C,Diminished Triad 2nd Inv,66;72;75
+C Augmented,C,Augmented Triad,60;64;68
+C Augmented 1st Inv,C,Augmented Triad 1st Inv,64;68;72
+C Augmented 2nd Inv,C,Augmented Triad 2nd Inv,68;72;76
+C# Major,C#,Major Triad,61;65;68
+C# Major 1st Inv,C#,Major Triad 1st Inv,65;68;73
+C# Major 2nd Inv,C#,Major Triad 2nd Inv,68;73;77
+C# Minor,C#,Minor Triad,61;64;68
+C# Minor 1st Inv,C#,Minor Triad 1st Inv,64;68;73
+C# Minor 2nd Inv,C#,Minor Triad 2nd Inv,68;73;76
+C# Diminished,C#,Diminished Triad,61;64;67
+C# Diminished 1st Inv,C#,Diminished Triad 1st Inv,64;67;73
+C# Diminished 2nd Inv,C#,Diminished Triad 2nd Inv,67;73;76
+C# Augmented,C#,Augmented Triad,61;65;69
+C# Augmented 1st Inv,C#,Augmented Triad 1st Inv,65;69;73
+C# Augmented 2nd Inv,C#,Augmented Triad 2nd Inv,69;73;77
+D Major,D,Major Triad,62;66;69
+D Major 1st Inv,D,Major Triad 1st Inv,66;69;74
+D Major 2nd Inv,D,Major Triad 2nd Inv,69;74;78
+D Minor,D,Minor Triad,62;65;69
+D Minor 1st Inv,D,Minor Triad 1st Inv,65;69;74
+D Minor 2nd Inv,D,Minor Triad 2nd Inv,69;74;77
+D Diminished,D,Diminished Triad,62;65;68
+D Diminished 1st Inv,D,Diminished Triad 1st Inv,65;68;74
+D Diminished 2nd Inv,D,Diminished Triad 2nd Inv,68;74;77
+D Augmented,D,Augmented Triad,62;66;70
+D Augmented 1st Inv,D,Augmented Triad 1st Inv,66;70;74
+D Augmented 2nd Inv,D,Augmented Triad 2nd Inv,70;74;78
+E Major,E,Major Triad,64;68;71
+E Major 1st Inv,E,Major Triad 1st Inv,68;71;76
+E Major 2nd Inv,E,Major Triad 2nd Inv,71;76;80
+E Minor,E,Minor Triad,64;67;71
+E Minor 1st Inv,E,Minor Triad 1st Inv,67;71;76
+E Minor 2nd Inv,E,Minor Triad 2nd Inv,71;76;79
+E Diminished,E,Diminished Triad,64;67;70
+E Diminished 1st Inv,E,Diminished Triad 1st Inv,67;70;76
+E Diminished 2nd Inv,E,Diminished Triad 2nd Inv,70;76;79
+E Augmented,E,Augmented Triad,64;68;72
+E Augmented 1st Inv,E,Augmented Triad 1st Inv,68;72;76
+E Augmented 2nd Inv,E,Augmented Triad 2nd Inv,72;76;80
+F Major,F,Major Triad,65;69;72
+F Major 1st Inv,F,Major Triad 1st Inv,69;72;77
+F Major 2nd Inv,F,Major Triad 2nd Inv,72;77;81
+F Minor,F,Minor Triad,65;68;72
+F Minor 1st Inv,F,Minor Triad 1st Inv,68;72;77
+F Minor 2nd Inv,F,Minor Triad 2nd Inv,72;77;80
+F Diminished,F,Diminished Triad,65;68;71
+F Diminished 1st Inv,F,Diminished Triad 1st Inv,68;71;77
+F Diminished 2nd Inv,F,Diminished Triad 2nd Inv,71;77;80
+F Augmented,F,Augmented Triad,65;69;73
+F Augmented 1st Inv,F,Augmented Triad 1st Inv,69;73;77
+F Augmented 2nd Inv,F,Augmented Triad 2nd Inv,73;77;81
+G Major,G,Major Triad,67;71;74
+G Major 1st Inv,G,Major Triad 1st Inv,71;74;79
+G Major 2nd Inv,G,Major Triad 2nd Inv,74;79;83
+G Minor,G,Minor Triad,67;70;74
+G Minor 1st Inv,G,Minor Triad 1st Inv,70;74;79
+G Minor 2nd Inv,G,Minor Triad 2nd Inv,74;79;82
+G Diminished,G,Diminished Triad,67;70;73
+G Diminished 1st Inv,G,Diminished Triad 1st Inv,70;73;79
+G Diminished 2nd Inv,G,Diminished Triad 2nd Inv,73;79;82
+G Augmented,G,Augmented Triad,67;71;75
+G Augmented 1st Inv,G,Augmented Triad 1st Inv,71;75;79
+G Augmented 2nd Inv,G,Augmented Triad 2nd Inv,75;79;83
+A Major,A,Major Triad,69;73;76
+A Major 1st Inv,A,Major Triad 1st Inv,73;76;81
+A Major 2nd Inv,A,Major Triad 2nd Inv,76;81;85
+A Minor,A,Minor Triad,69;72;76
+A Minor 1st Inv,A,Minor Triad 1st Inv,72;76;81
+A Minor 2nd Inv,A,Minor Triad 2nd Inv,76;81;84
+A Diminished,A,Diminished Triad,69;72;75
+A Diminished 1st Inv,A,Diminished Triad 1st Inv,72;75;81
+A Diminished 2nd Inv,A,Diminished Triad 2nd Inv,75;81;84
+A Augmented,A,Augmented Triad,69;73;77
+A Augmented 1st Inv,A,Augmented Triad 1st Inv,73;77;81
+A Augmented 2nd Inv,A,Augmented Triad 2nd Inv,77;81;85
+B Major,B,Major Triad,71;75;78
+B Major 1st Inv,B,Major Triad 1st Inv,75;78;83
+B Major 2nd Inv,B,Major Triad 2nd Inv,78;83;87
+B Minor,B,Minor Triad,71;74;78
+B Minor 1st Inv,B,Minor Triad 1st Inv,74;78;83
+B Minor 2nd Inv,B,Minor Triad 2nd Inv,78;83;86
+B Diminished,B,Diminished Triad,71;74;77
+B Diminished 1st Inv,B,Diminished Triad 1st Inv,74;77;83
+B Diminished 2nd Inv,B,Diminished Triad 2nd Inv,77;83;86
+B Augmented,B,Augmented Triad,71;75;79
+B Augmented 1st Inv,B,Augmented Triad 1st Inv,75;79;83
+B Augmented 2nd Inv,B,Augmented Triad 2nd Inv,79;83;87 

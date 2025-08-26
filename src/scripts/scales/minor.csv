@@ -1,0 +1,13 @@
+name,root,type,notes
+C Minor Scale,C,Minor,60;62;63;65;67;68;70;72
+C# Minor Scale,C#,Minor,61;63;64;66;68;69;71;73
+D Minor Scale,D,Minor,62;64;65;67;69;70;72;74
+D# Minor Scale,D#,Minor,63;65;66;68;70;71;73;75
+E Minor Scale,E,Minor,64;66;67;69;71;72;74;76
+F Minor Scale,F,Minor,65;67;68;70;72;73;75;77
+F# Minor Scale,F#,Minor,66;68;69;71;73;74;76;78
+G Minor Scale,G,Minor,67;69;70;72;74;75;77;79
+G# Minor Scale,G#,Minor,68;70;71;73;75;76;78;80
+A Minor Scale,A,Minor,69;71;72;74;76;77;79;81
+A# Minor Scale,A#,Minor,70;72;73;75;77;78;80;82
+B Minor Scale,B,Minor,71;73;74;76;78;79;81;83 

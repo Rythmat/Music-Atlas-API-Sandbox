@@ -1,0 +1,486 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_NON_POOLING")
+}
+
+enum UserRole {
+  admin
+  teacher
+  student
+
+  @@map("user_role")
+}
+
+model User {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String?   @unique
+  username  String?   @unique
+  birthDate DateTime? @map("birth_date")
+  password  String
+  role      UserRole  @default(teacher)
+
+  nickname String
+  fullName String?
+  school   String?
+
+  stripeCustomerId     String? @map("stripe_customer_id")
+  stripeSubscriptionId String? @map("stripe_subscription_id")
+
+  passwordResetToken          String?   @map("password_reset_token")
+  passwordResetTokenExpiresAt DateTime? @map("password_reset_token_expires_at")
+  passwordResetAttempts       Int       @default(0) @map("password_reset_attempts") @db.SmallInt
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  removedAt DateTime? @map("removed_at")
+
+  // Relations
+  Classrooms        Classroom[]
+  ClassroomStudents ClassroomStudent[]
+  PracticeEvents    PracticeEvent[]
+  Media             Media[]
+
+  @@map("user")
+}
+
+model TeacherInvite {
+  id    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code  String @unique @db.VarChar(8)
+  email String
+
+  viewCount    Int       @default(0) @map("view_count") @db.SmallInt
+  lastViewedAt DateTime? @map("last_viewed_at")
+  expiresAt    DateTime? @map("expires_at")
+  consumedAt   DateTime? @map("consumed_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("teacher_invite")
+}
+
+model ClassroomStudent {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  classroomId String    @map("classroom_id") @db.Uuid
+  Classroom   Classroom @relation(fields: [classroomId], references: [id])
+
+  studentId String @map("student_id") @db.Uuid
+  Student   User   @relation(fields: [studentId], references: [id])
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  removedAt DateTime? @map("removed_at")
+
+  @@map("classroom_student")
+}
+
+model Classroom {
+  id   String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code String @unique @db.VarChar(8)
+
+  name        String
+  year        Int     @db.SmallInt
+  description String?
+
+  teacherId String @map("teacher_id") @db.Uuid
+  Teacher   User   @relation(fields: [teacherId], references: [id])
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  closedAt  DateTime? @map("closed_at")
+
+  ClassroomStudents ClassroomStudent[]
+
+  @@map("classroom")
+}
+
+model Collection {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  description String?
+  color       String? @db.VarChar(7)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  CollectionChapters CollectionChapter[]
+
+  @@map("collection")
+}
+
+enum NoteKey {
+  c
+  g
+  d
+  a
+  e
+  b
+  f_sharp
+  d_flat
+  a_flat
+  e_flat
+  b_flat
+  f
+
+  @@map("note_key")
+}
+
+model Chapter {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  description String?
+  noteKey     NoteKey? @default(c) @map("note_key")
+  color       String?  @db.VarChar(7)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  CollectionChapters CollectionChapter[]
+  Pages              Page[]
+
+  @@map("chapter")
+}
+
+model CollectionChapter {
+  id    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order Int    @db.SmallInt
+
+  collectionId String     @map("collection_id") @db.Uuid
+  Collection   Collection @relation(fields: [collectionId], references: [id])
+  chapterId    String     @map("chapter_id") @db.Uuid
+  Chapter      Chapter    @relation(fields: [chapterId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("collection_chapter")
+}
+
+model Page {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String?
+  order       Int      @default(0) @db.SmallInt
+  content     String   @default("")
+  description String?
+  noteKey     NoteKey? @default(c) @map("note_key")
+  color       String?  @db.VarChar(7)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  chapterId String  @map("chapter_id") @db.Uuid
+  Chapter   Chapter @relation(fields: [chapterId], references: [id])
+
+  PracticeEvents    PracticeEvent[]
+  PageNoteSequences PageNoteSequence[]
+  PagePhraseMaps    PagePhraseMap[]
+  PagePlayAlongs    PagePlayAlong[]
+
+  @@map("page")
+}
+
+model NoteSequence {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  // Unique identifier for the sequence, human-readable name (e.g., "C Major Scale", "D Minor Triad")
+  name  String  @unique
+  color String? @db.VarChar(7)
+
+  // Musical root note (e.g., C, F#, etc.)
+  root String?
+
+  // Type of sequence (e.g., Major Scale, Minor Triad, etc.)
+  type String?
+
+  // Beats per minute.
+  tempo Int @db.SmallInt
+
+  // Rhythmic structure (e.g., 4/4) - for reference only
+  timeSignature String @map("time_signature") @db.VarChar(10)
+
+  // Resolution of timing in ticks (PPQ), which is essential for MIDI timing precision.
+  ticksPerBeat Int @map("ticks_per_beat") @db.SmallInt
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  Notes             SequenceNote[]
+  PageNoteSequences PageNoteSequence[]
+
+  @@map("note_sequence")
+}
+
+model SequenceNote {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  // MIDI note number (0-127).
+  noteNumber Int @map("note_number") @db.SmallInt
+
+  // Start time in ticks (absolute position).
+  startTimeInTicks Int @map("start_time_in_ticks") @db.SmallInt
+
+  // Duration in ticks.
+  durationInTicks Int @map("duration_in_ticks") @db.SmallInt
+
+  // Note on velocity (0-127).
+  velocity Int @db.SmallInt
+
+  // Note off velocity (0-127).
+  noteOffVelocity Int? @db.SmallInt
+
+  color String? @db.VarChar(7)
+
+  noteSequenceId String       @map("note_sequence_id") @db.Uuid
+  NoteSequence   NoteSequence @relation(fields: [noteSequenceId], references: [id])
+
+  @@map("sequence_note")
+}
+
+model PageNoteSequence {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  noteSequenceId String       @map("note_sequence_id") @db.Uuid
+  NoteSequence   NoteSequence @relation(fields: [noteSequenceId], references: [id])
+
+  pageId String @map("page_id") @db.Uuid
+  Page   Page   @relation(fields: [pageId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("page_note_sequence")
+}
+
+model PagePhraseMap {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  phraseMapId String    @map("phrase_map_id") @db.Uuid
+  PhraseMap   PhraseMap @relation(fields: [phraseMapId], references: [id])
+
+  pageId String @map("page_id") @db.Uuid
+  Page   Page   @relation(fields: [pageId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("phrase_page")
+}
+
+model PagePlayAlong {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  playAlongId String    @map("play_along_id") @db.Uuid
+  PlayAlong   PlayAlong @relation(fields: [playAlongId], references: [id])
+
+  pageId String @map("page_id") @db.Uuid
+  Page   Page   @relation(fields: [pageId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("page_play_along")
+}
+
+model PracticeEvent {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  pageId String @map("page_id") @db.Uuid
+  Page   Page   @relation(fields: [pageId], references: [id])
+
+  studentId String @map("student_id") @db.Uuid
+  Student   User   @relation(fields: [studentId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("practice_event")
+}
+
+model PhraseMap {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  label       String? @map("label")
+  description String?
+  color       String? @db.VarChar(7)
+
+  beatsPerMinute Int         @default(60) @map("beats_per_minute") @db.SmallInt
+  beatsPerBar    Int         @default(16) @map("beats_per_bar") @db.SmallInt
+  PhraseBars     PhraseBar[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  PagePhraseMaps PagePhraseMap[]
+
+  @@map("phrase_map")
+}
+
+model PhraseBar {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  label       String? @map("label")
+  color       String? @db.VarChar(7)
+  order       Int     @default(0) @db.SmallInt
+  startRepeat Boolean @default(false) @map("start_repeat")
+  endRepeat   Boolean @default(false) @map("end_repeat")
+
+  phraseMapId String    @map("phrase_map_id") @db.Uuid
+  PhraseMap   PhraseMap @relation(fields: [phraseMapId], references: [id])
+
+  PhraseBarNotes PhraseBarNote[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("phrase_bar")
+}
+
+enum PhraseBarNoteType {
+  note
+  rest
+
+  @@map("phrase_bar_note_type")
+}
+
+enum PhraseBarNoteDuration {
+  whole
+  half
+  quarter
+  eighth
+  sixteenth
+
+  @@map("phrase_bar_note_duration")
+}
+
+model PhraseBarNote {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  label        String?
+  noteType     PhraseBarNoteType     @default(note) @map("note_type")
+  noteNumbers  Json                  @map("note_numbers")
+  noteDuration PhraseBarNoteDuration @default(quarter) @map("note_duration")
+  color        String?               @db.VarChar(7)
+  order        Int                   @default(0) @db.SmallInt
+
+  phraseBarId String    @map("phrase_bar_id") @db.Uuid
+  PhraseBar   PhraseBar @relation(fields: [phraseBarId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("phrase_bar_note")
+}
+
+model PlayAlong {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  name        String
+  description String?
+  color       String? @db.VarChar(7)
+
+  midiFilePath       String? @map("midi_file_path")
+  midiBeatsPerMinute Int?    @map("midi_beats_per_minute") @db.SmallInt
+  audioFilePath      String? @map("audio_file_path")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  PagePlayAlongs PagePlayAlong[]
+
+  @@map("play_along")
+}
+
+model Tune {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  title           String?
+  tempo           Int     @db.SmallInt
+  beatsPerMeasure Int     @db.SmallInt
+  beatUnit        Int     @db.SmallInt
+  key             String? @db.VarChar(3)
+  color           String? @db.VarChar(7)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  Measures Measure[]
+
+  @@map("tune")
+}
+
+model Measure {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  label       String?
+  number      Int     @db.SmallInt
+  repeatStart Boolean @default(false) @map("repeat_start")
+  repeatEnd   Boolean @default(false) @map("repeat_end")
+  repeatTimes Int?    @map("repeat_times") @db.SmallInt
+  color       String? @db.VarChar(7)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  Tune   Tune   @relation(fields: [tuneId], references: [id])
+  tuneId String @map("tune_id") @db.Uuid
+  Notes  Note[]
+
+  @@map("measure")
+}
+
+enum NoteType {
+  whole
+  half
+  quarter
+  eighth
+  sixteenth
+  thirtysecond
+  dotted_whole
+  dotted_half
+  dotted_quarter
+  dotted_eighth
+  dotted_sixteenth
+
+  @@map("note_type")
+}
+
+model Note {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  label String?
+  color String? @db.VarChar(7)
+  pitch String  @db.VarChar(3)
+
+  startOffsetInBeats Float @map("start_offset_in_beats")
+
+  type     NoteType @default(quarter) @map("note_type")
+  velocity Int?     @db.SmallInt
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  measureId String  @map("measure_id") @db.Uuid
+  Measure   Measure @relation(fields: [measureId], references: [id])
+
+  @@map("note")
+}
+
+model Media {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  name        String
+  filePath    String @map("file_path")
+  contentType String @map("content_type")
+  uploadedBy  String @map("uploaded_by") @db.Uuid
+  UploadedBy  User   @relation(fields: [uploadedBy], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("media")
+}

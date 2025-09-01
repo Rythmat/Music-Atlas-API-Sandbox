@@ -1,6 +1,6 @@
 type EnvKey =
   // App
-  | 'APP_URL'
+  // | 'APP_URL'
 
   // Sentry
   // | 'SENTRY_DSN'

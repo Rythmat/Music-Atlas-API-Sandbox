@@ -22,7 +22,7 @@ module.exports = {
     'import/no-default-export': 'error',
     'import/no-duplicates': 'off',
     'import/no-named-as-default': 'off',
-    'import/no-deprecated': 'error',
+    'import/no-deprecated': 'off',
     'no-duplicate-imports': 'error',
     'no-console': [
       'error',

@@ -4,15 +4,15 @@
   "type": "module",
   "scripts": {
     "build": "next build && prisma migrate deploy",
-    "create-user": "doppler run -- bun src/scripts/createUser.ts",
-    "dev": "doppler run -- next dev --turbopack",
+    "create-user": "bun src/scripts/createUser.ts",
+    "dev": "next dev --turbopack",
     "email": "email dev --dir src/emails",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "no-hats package.json && prettier . --check && eslint \"{src,apps,libs,test}/**/*.ts\" --max-warnings 0 && tsc --noEmit",
     "predev": "stay-fresh check --install",
     "prelint": "node prisma/.scripts/generate.mjs",
     "prepare": "node .husky/install.mjs && node prisma/.scripts/generate.mjs",
-    "set-cors": "doppler run -- bun src/scripts/configure-storage-cors.ts",
+    "set-cors": "bun src/scripts/configure-storage-cors.ts",
     "start": "next start",
     "test:unit": "vitest"
   },

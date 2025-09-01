@@ -3,8 +3,8 @@ type EnvKey =
   | 'APP_URL'
 
   // Sentry
-  | 'SENTRY_DSN'
-  | 'SENTRY_ENVIRONMENT'
+  // | 'SENTRY_DSN'
+  // | 'SENTRY_ENVIRONMENT'
 
   // Vercel
   | 'VERCEL_URL'
@@ -20,8 +20,8 @@ type EnvKey =
   | 'JWT_SECRET'
 
   // Resend
-  | 'RESEND_FROM_EMAIL'
-  | 'RESEND_API_KEY';
+  // | 'RESEND_FROM_EMAIL'
+  // | 'RESEND_API_KEY';
 
 export const Env = {
   /**

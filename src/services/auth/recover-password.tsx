@@ -2,7 +2,7 @@ import crypto from 'crypto';
 import { addMinutes } from 'date-fns';
 import { error, t } from 'elysia';
 import { Env } from '@/constants/env';
-import { resend } from '@/lib/resend';
+// import { resend } from '@/lib/resend';
 import type { ContextType } from '@/server/context';
 import { RecoverPasswordEmailTemplate } from './RecoverPasswordEmail';
 
@@ -54,18 +54,18 @@ export async function recoverPassword(
         },
       });
 
-      await resend.emails.send({
-        from: Env.get('RESEND_FROM_EMAIL'),
-        to: email,
-        subject: 'Recover Password',
-        react: (
-          <RecoverPasswordEmailTemplate
-            firstName={user.nickname}
-            resetLink={`${Env.get('APP_URL')}/reset-password?token=${token}`}
-            expiresAt={expiresAt}
-          />
-        ),
-      });
+      // await resend.emails.send({
+      //   from: Env.get('RESEND_FROM_EMAIL'),
+      //   to: email,
+      //   subject: 'Recover Password',
+      //   react: (
+      //     <RecoverPasswordEmailTemplate
+      //       firstName={user.nickname}
+      //       resetLink={`${Env.get('APP_URL')}/reset-password?token=${token}`}
+      //       expiresAt={expiresAt}
+      //     />
+      //   ),
+      // });
     };
 
     handle().catch((error) => {

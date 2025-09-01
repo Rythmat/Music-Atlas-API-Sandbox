@@ -17,12 +17,12 @@ import { practiceEventController } from './controllers/practice-event';
 import { studentController } from './controllers/student';
 import { teacherController } from './controllers/teacher';
 import { tuneController } from './controllers/tune';
-import { sentry } from './sentry';
+// import { sentry } from './sentry';
 import { serializeResponse } from './superJson';
 
 export const server = new Elysia()
   .use(cors())
-  .use(sentry())
+  // .use(sentry())
   .onAfterHandle(serializeResponse)
   .use(
     swagger({

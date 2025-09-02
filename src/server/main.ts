@@ -21,7 +21,7 @@ import { tuneController } from './controllers/tune';
 import { serializeResponse } from './superJson';
 
 
-const WEBAPP_ORIGIN = process.env.WEBAPP_ORIGIN ?? 'https://music-atlas-webapp-sandbox-h43ol6h06-musicatlas.vercel.app/';
+const WEBAPP_ORIGIN = process.env.WEBAPP_ORIGIN ?? 'https://music-atlas-webapp-sandbox-h43ol6h06-musicatlas.vercel.app';
 const DEV_ORIGIN = 'http://localhost:5173';
 const ALLOWED_ORIGINS = [WEBAPP_ORIGIN, DEV_ORIGIN].filter(Boolean);
 const isAllowed = (origin?: string | null) => !!origin && ALLOWED_ORIGINS.includes(origin);

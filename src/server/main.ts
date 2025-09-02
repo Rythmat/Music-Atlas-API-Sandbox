@@ -30,32 +30,7 @@ const isAllowed = (origin?: string | null) => !!origin && ALLOWED_ORIGINS.includ
 
 export const server = new Elysia()
 
-  .use(cors({
-    origin: (req) => {
-    const origin = req.headers.get('origin');
-    // When credentials are used, return the exact origin string (not `*`)
-    return isAllowed(origin);
-    },
-    credentials: true, // if you use cookies/sessions
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    maxAge: 600,
-  }))
-
-  .options('/*', ({ request, set }) => {
-    const origin = request.headers.get('origin');
-    const reqHeaders = request.headers.get('access-control-request-headers') ?? 'Content-Type, Authorization';
-
-    if (isAllowed(origin)) {
-      set.headers['Access-Control-Allow-Origin'] = origin!;
-      set.headers['Access-Control-Allow-Credentials'] = 'true';
-      set.headers['Vary'] = 'Origin';
-    }
-    set.headers['Access-Control-Allow-Methods'] = 'GET,POST,PUT,PATCH,DELETE,OPTIONS';
-    set.headers['Access-Control-Allow-Headers'] = reqHeaders;
-    set.status = 204; // No content for preflight
-  })
-
+  .use(cors())
   // .use(sentry())
   .onAfterHandle(serializeResponse)
   .use(

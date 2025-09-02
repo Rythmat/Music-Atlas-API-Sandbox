@@ -20,8 +20,38 @@ import { tuneController } from './controllers/tune';
 // import { sentry } from './sentry';
 import { serializeResponse } from './superJson';
 
+
+const WEBAPP_ORIGIN = process.env.WEBAPP_ORIGIN ?? 'https://music-atlas-webapp-sandbox-h43ol6h06-musicatlas.vercel.app/';
+const DEV_ORIGIN = 'http://localhost:5173';
+const ALLOWED_ORIGINS = [WEBAPP_ORIGIN, DEV_ORIGIN].filter(Boolean);
+const isAllowed = (origin?: string | null) => !!origin && ALLOWED_ORIGINS.includes(origin);
+
+
+
 export const server = new Elysia()
-  .use(cors())
+
+  .use(cors({
+    origin: (origin) => isAllowed(origin),
+    credentials: true, // if you use cookies/sessions
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    maxAge: 600,
+  }))
+
+  .options('/*', ({ request, set }) => {
+    const origin = request.headers.get('origin');
+    const reqHeaders = request.headers.get('access-control-request-headers') ?? 'Content-Type, Authorization';
+
+    if (isAllowed(origin)) {
+      set.headers['Access-Control-Allow-Origin'] = origin!;
+      set.headers['Access-Control-Allow-Credentials'] = 'true';
+      set.headers['Vary'] = 'Origin';
+    }
+    set.headers['Access-Control-Allow-Methods'] = 'GET,POST,PUT,PATCH,DELETE,OPTIONS';
+    set.headers['Access-Control-Allow-Headers'] = reqHeaders;
+    set.status = 204; // No content for preflight
+  })
+
   // .use(sentry())
   .onAfterHandle(serializeResponse)
   .use(

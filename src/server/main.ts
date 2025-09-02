@@ -31,7 +31,11 @@ const isAllowed = (origin?: string | null) => !!origin && ALLOWED_ORIGINS.includ
 export const server = new Elysia()
 
   .use(cors({
-    origin: (origin) => isAllowed(origin),
+    origin: (req) => {
+    const origin = req.headers.get('origin');
+    // When credentials are used, return the exact origin string (not `*`)
+    return isAllowed(origin);
+    },
     credentials: true, // if you use cookies/sessions
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],

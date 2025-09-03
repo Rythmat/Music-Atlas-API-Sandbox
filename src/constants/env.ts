@@ -17,11 +17,11 @@ type EnvKey =
   | 'GCP_STORAGE_BUCKET'
 
   // JWT
-  | 'JWT_SECRET'
+  | 'JWT_SECRET';
 
-  // Resend
-  // | 'RESEND_FROM_EMAIL'
-  // | 'RESEND_API_KEY';
+// Resend
+// | 'RESEND_FROM_EMAIL'
+// | 'RESEND_API_KEY';
 
 export const Env = {
   /**

@@ -4,5 +4,4 @@ const nextConfig = {
 };
 export default nextConfig;
 
-
 console.log('>> Next config loaded (ignoreDuringBuilds=true)');

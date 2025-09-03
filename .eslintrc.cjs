@@ -17,7 +17,7 @@ module.exports = {
   rules: {
     'import/no-named-as-default-member': 'off',
     'sonarjs/no-duplicate-string': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': 'off',
     'no-unused-vars': 'off',
     'import/no-default-export': 'error',
     'import/no-duplicates': 'off',

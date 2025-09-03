@@ -20,6 +20,11 @@ import {
   listChaptersSchema,
 } from '@/services/chapter/list-chapters';
 import {
+  reorderChapters,
+  reorderChaptersSchema,
+  reorderChaptersResponseSchema,
+} from '@/services/chapter/reorder-chapters';
+import {
   updateChapter,
   updateChapterSchema,
 } from '@/services/chapter/update-chapter';
@@ -94,5 +99,23 @@ chapterController.derive(isAuthenticated).delete(
   },
   {
     params: deleteChapterSchema,
+  },
+);
+
+/**
+ * @description Reorder chapters
+ */
+chapterController.post(
+  '/reorder',
+  async ({ body, context }) => reorderChapters(body, context),
+  {
+    // optional but nice for codegen/Docs
+    detail: {
+      tags: ['Chapters'],
+      summary: 'Globally reorder chapters (applies to all collections)',
+      operationId: 'postChaptersReorder',
+    },
+    body: reorderChaptersSchema,
+    response: reorderChaptersResponseSchema,
   },
 );

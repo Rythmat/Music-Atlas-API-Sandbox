@@ -9,9 +9,9 @@ const USER_TO_CREATE: {
   school: string | null;
   role: UserRole;
 } = {
-  email: 'marcel@bitcomplete.io',
-  nickname: 'marcel',
-  fullName: 'Marcel Coelho',
+  email: 'ryan@musicatlas.io',
+  nickname: 'ryan',
+  fullName: 'Ryan Matthews',
   school: null,
   role: 'admin',
 };

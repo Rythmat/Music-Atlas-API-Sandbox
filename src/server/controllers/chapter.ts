@@ -107,14 +107,10 @@ chapterController.derive(isAuthenticated).delete(
  */
 chapterController.post(
   '/reorder',
-  async ({ body, context }) => reorderChapters(body, context),
+  async ({ body, context }) => {
+    return await reorderChapters(body, context);
+  },
   {
-    // optional but nice for codegen/Docs
-    detail: {
-      tags: ['Chapters'],
-      summary: 'Globally reorder chapters (applies to all collections)',
-      operationId: 'postChaptersReorder',
-    },
     body: reorderChaptersSchema,
     response: reorderChaptersResponseSchema,
   },

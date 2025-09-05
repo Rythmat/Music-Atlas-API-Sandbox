@@ -23,6 +23,7 @@ export const createChapterResponseSchema = t.Object({
   description: t.Nullable(t.String()),
   noteKey: t.Nullable(t.Enum(NoteKey)),
   color: t.Nullable(t.String()),
+  order: t.Number(),
   pages: t.Array(
     t.Object({
       id: t.String(),
@@ -41,6 +42,13 @@ export async function createChapter(
   input: typeof createChapterSchema.static,
   { database }: ContextType,
 ) {
+  const last = await database.chapter.findFirst({
+    orderBy: { order: 'desc' },
+    select: { order: true },
+  });
+
+  const nextOrder = (last?.order ?? -1) + 1;
+
   // Create the chapter
   const chapter = await database.chapter.create({
     data: {
@@ -48,6 +56,7 @@ export async function createChapter(
       description: input.description,
       noteKey: input.noteKey,
       color: input.color,
+      order: nextOrder,
     },
   });
 
